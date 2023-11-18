@@ -1,0 +1,36 @@
+http://go.microsoft.com/fwlink/?LinkId=38938&mpver=11.0.5721.5237&id=C00D11BA&contextid=68&originalid=80040256
+Numblocks = FileLength / BlockSize
+
+
+LeftOver = FileLength Mod BlockSize
+
+
+ReDim ByteData(LeftOver)
+
+
+Get SourceFile, , ByteData()
+
+
+Rs.Fields("foto").AppendChunk ByteData()
+
+
+ReDim ByteData(BlockSize)
+
+
+For I = 1 To Numblocks
+
+
+Get SourceFile, , ByteData()
+
+
+Rs.Fields("foto").AppendChunk ByteData()
+
+
+Next I
+
+
+Rs.Update
+
+
+Close SourceFile
+
